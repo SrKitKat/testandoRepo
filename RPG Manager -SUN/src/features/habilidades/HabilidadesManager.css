@@ -28,9 +28,9 @@
   gap: 8px;
   margin-bottom: 22px;
   padding: 5px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 11px;
-  background: #131922;
+  background: var(--rpg-inset);
 }
 
 
@@ -76,7 +76,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: #252e3b;
+  background: var(--rpg-raised);
   color: #aeb7c3;
   padding: 2px 6px;
   font-size: 9px;
@@ -153,8 +153,8 @@
 
 
 .habilidades-manager-botao-secundario {
-  border: 1px solid #3a4555;
-  background: #1b222d;
+  border: 1px solid var(--rpg-line-bright);
+  background: var(--rpg-surface);
   color: #eef2f7;
   padding: 9px 14px;
 }
@@ -191,9 +191,9 @@
   grid-template-columns: 110px minmax(0, 1fr);
   gap: 18px;
   padding: 18px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 14px;
-  background: #171d26;
+  background: var(--rpg-surface);
   transition:
     border-color 0.15s ease,
     background 0.15s ease;
@@ -208,13 +208,13 @@
 
 .habilidades-manager-card-imagem {
   min-height: 110px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #111720;
+  background: var(--rpg-inset);
 }
 
 
@@ -321,7 +321,7 @@
   display: flex;
   align-items: flex-end;
   margin-bottom: 16px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 15px;
   background: #151b24;
 }
@@ -388,9 +388,9 @@
 .habilidades-manager-resumo-card {
   min-width: 0;
   padding: 16px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 11px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 
@@ -418,9 +418,9 @@
 .habilidades-manager-editor-secao {
   margin-bottom: 16px;
   padding: 18px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 13px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 
@@ -576,7 +576,7 @@
   height: 9px;
   overflow: hidden;
   border-radius: 999px;
-  background: #252e3b;
+  background: var(--rpg-raised);
 }
 
 
@@ -662,7 +662,7 @@
   min-width: 0;
   border: 1px solid #344051;
   border-radius: 9px;
-  background: #111720;
+  background: var(--rpg-inset);
   color: #f4f6fa;
   padding: 11px 12px;
   outline: none;
@@ -691,7 +691,7 @@
 .habilidades-manager-previa-imagem {
   overflow: hidden;
   max-height: 260px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 11px;
 }
 
@@ -717,9 +717,9 @@
 
 .habilidades-manager-subsecao {
   padding: 17px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 11px;
-  background: #131922;
+  background: var(--rpg-inset);
 }
 
 
@@ -744,7 +744,7 @@
   padding: 12px;
   border: 1px solid #2e3948;
   border-radius: 9px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 
@@ -777,7 +777,7 @@
   min-width: 0;
   border: 1px solid #344051;
   border-radius: 9px;
-  background: #111720;
+  background: var(--rpg-inset);
   color: #f4f6fa;
   padding: 11px 12px;
   outline: none;
@@ -799,7 +799,7 @@
 
 
 .habilidades-manager select option {
-  background: #111720;
+  background: var(--rpg-inset);
   color: #f4f6fa;
 }
 
@@ -822,9 +822,9 @@
 .habilidades-manager
 button:not(.habilidades-manager-botao-principal):not(.habilidades-manager-botao-secundario):not(.habilidades-manager-botao-perigo):not(.habilidades-manager-expandir):not(.habilidades-manager-subnavegacao-botao) {
   min-height: 40px;
-  border: 1px solid #3a4555;
+  border: 1px solid var(--rpg-line-bright);
   border-radius: 9px;
-  background: #1b222d;
+  background: var(--rpg-surface);
   color: #eef2f7;
   padding: 9px 13px;
   cursor: pointer;

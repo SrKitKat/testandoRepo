@@ -621,6 +621,7 @@ function nomeFamiliaArquetipo(
 
 function FichaDetalhes({
   ficha,
+  moduloInicial,
 
   entidadesCampanha = [],
   podeEditarDados = false,
@@ -664,7 +665,7 @@ function FichaDetalhes({
     setModuloAtivo
   ] = useState(
     () =>
-      carregarModuloFicha(
+      moduloInicial || carregarModuloFicha(
         ficha?.id
       )
   );
@@ -1070,7 +1071,7 @@ function FichaDetalhes({
 
 
       setModuloAtivo(
-        carregarModuloFicha(
+        moduloInicial || carregarModuloFicha(
           ficha.id
         )
       );
@@ -1116,7 +1117,7 @@ function FichaDetalhes({
       );
     },
     [
-      ficha?.id
+      ficha?.id, moduloInicial
     ]
   );
 

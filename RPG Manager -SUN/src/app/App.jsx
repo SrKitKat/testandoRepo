@@ -5,6 +5,8 @@ import React, {
 } from "react";
 
 import "./App.css";
+import { ManagerDirectory, ManagerHome, ManagerLayout, ManagerLoading } from "./ManagerLayout.jsx";
+import ConfiguracoesCampanha from "../features/campanhas/ConfiguracoesCampanha.jsx";
 
 import {
   CHAVE_FICHAS,
@@ -122,7 +124,8 @@ const AREAS_CAMPANHA = new Set([
   "anotacoes",
   "equipe",
   "jornada",
-  "vinculos"
+  "vinculos",
+  "configuracoes"
 ]);
 
 
@@ -1647,7 +1650,7 @@ function criarEstadoNovaFicha(
 }
 
 
-function RPGManager({ usuario }) {
+function RPGManager({ usuario, sair }) {
   const inputFotoRef =
     useRef(null);
 
@@ -1683,10 +1686,7 @@ function RPGManager({ usuario }) {
     setErroPersistencia
   ] = useState("");
 
-  const [
-    selecionandoCampanha,
-    setSelecionandoCampanha
-  ] = useState(true);
+  const [telaPainel, setTelaPainel] = useState("inicio");
 
 
   const [
@@ -5619,11 +5619,6 @@ function RPGManager({ usuario }) {
   ]);
 
 
-  if (!dadosRemotosCarregados) {
-    return <main className="auth-shell"><section className="auth-card"><h1>RPG Manager</h1><p>Carregando suas campanhas...</p></section></main>;
-  }
-
-
   function salvarModuloCampanha(campo, valor) {
     if (!idCampanhaAtual || !possuiPermissao(campanhaAtual, "editarConfiguracao")) return;
     setCampanhas(anteriores => anteriores.map(campanha =>
@@ -5633,568 +5628,624 @@ function RPGManager({ usuario }) {
     ));
   }
 
+  const fichasVisiveis = fichas.filter(ficha => !entidadeEstaArquivada(ficha) && podeAcessarFicha(ficha));
+  const personagens = fichasVisiveis.filter(ficha => ficha.tipoEntidade === TIPOS_ENTIDADE.PERSONAGEM);
+  const podeConfigurar = possuiPermissao(campanhaAtual, "administrarCampanha");
+  const podeCriarFicha = possuiPermissao(campanhaAtual, "criarPersonagens");
+  const diretorioAberto = ["personagens", "fichas", "habilidades", "inventario"].includes(telaPainel);
 
-  async function criarPrimeiraCampanha(nome) {
-    const remotas = await criarCampanhaRemota(nome, usuario.id);
+  function navegarPainel(destino) {
+    setFichaAberta(null);
+    setCriandoFicha(false);
+    setEditandoFicha(false);
+    setAreaEntidadesAtiva(null);
+    setAreaCampanhaAtiva(null);
+    setOrigemFicha(ORIGENS_FICHA.DASHBOARD);
+    setEstadoArquivo(criarEstadoArquivoInicial());
+
+    if (AREAS_CAMPANHA.has(destino)) {
+      if (!campanhaAtual || (destino === "configuracoes" && !podeConfigurar)) return;
+      setAreaCampanhaAtiva(destino);
+      return;
+    }
+    setTelaPainel(destino);
+  }
+
+  function selecionarCampanha(id) {
+    setCampanhaAtivaId(id);
+    navegarPainel("inicio");
+  }
+
+  async function atualizarCampanhas(operacao) {
+    const anteriores = new Set(campanhas.map(campanha => campanha.id));
+    const remotas = await operacao;
     setCampanhas(remotas.map(normalizarCampanha));
-    setCampanhaAtivaId(remotas[0]?.id || null);
-    setSelecionandoCampanha(false);
+    const destino = remotas.find(campanha => !anteriores.has(campanha.id))
+      || remotas.find(campanha => campanha.id === idCampanhaAtual)
+      || remotas[0];
+    if (destino) selecionarCampanha(destino.id);
   }
 
-
-  async function entrarPrimeiraCampanha(codigo) {
-    const remotas = await entrarEmCampanhaPorCodigo(codigo, usuario.id);
-    setCampanhas(remotas.map(normalizarCampanha));
-    setCampanhaAtivaId(remotas[0]?.id || null);
-    setSelecionandoCampanha(false);
+  function criarPrimeiraCampanha(nome) {
+    return atualizarCampanhas(criarCampanhaRemota(nome, usuario.id));
   }
 
-
-  if (erroPersistencia && campanhas.length === 0) {
-    return <main className="auth-shell"><section className="auth-card"><h1>RPG Manager</h1><p>{erroPersistencia}</p><button type="button" onClick={() => window.location.reload()}>Tentar novamente</button></section></main>;
+  function entrarPrimeiraCampanha(codigo) {
+    return atualizarCampanhas(entrarEmCampanhaPorCodigo(codigo, usuario.id));
   }
 
+  function renderizarPagina() {
+    if (!dadosRemotosCarregados) {
+      return <ManagerLoading>Carregando suas campanhas…</ManagerLoading>;
+    }
 
-  if (campanhas.length === 0) {
-    const nome = usuario.user_metadata?.username || "aventureiro";
-    return <PrimeiroAcesso nome={nome} onCriar={criarPrimeiraCampanha} onEntrar={entrarPrimeiraCampanha} />;
-  }
+    if (erroPersistencia && campanhas.length === 0) {
+      return <main className="auth-shell"><section className="auth-card"><h1>RPG Manager</h1><p>{erroPersistencia}</p><button type="button" onClick={() => window.location.reload()}>Tentar novamente</button></section></main>;
+    }
+
+    if (campanhas.length === 0) {
+      const nome = usuario.user_metadata?.username || "aventureiro";
+      return <PrimeiroAcesso nome={nome} onCriar={criarPrimeiraCampanha} onEntrar={entrarPrimeiraCampanha} />;
+    }
+
+    if (telaPainel === "campanhas") {
+      return <MinhasCampanhas campanhas={campanhas} atualId={idCampanhaAtual} onEntrar={selecionarCampanha} onCriar={criarPrimeiraCampanha} onConvidado={entrarPrimeiraCampanha} />;
+    }
+
+    if (
+      criandoFicha
+    ) {
+      return (
+        <CriadorEntidade
+          modo="criar"
+
+          configuracao={
+            configuracaoCampanha
+          }
+
+          novaFicha={
+            novaFicha
+          }
+
+          tipoEntidade={
+            tipoEntidadeEdicao
+          }
+
+          tiposPermitidos={
+            tiposCriacaoPermitidos
+          }
+
+          podeAlterarTipo
+
+          nomeProprietario={
+            obterNomeParticipante(
+              usuarioAtualId
+            )
+          }
+
+          alterarCampo={
+            alterarNovaFicha
+          }
+
+          alterarAtributo={
+            alterarAtributoNovaFicha
+          }
+
+          definirAtributo={
+            definirAtributoNovaFicha
+          }
+
+          alterarRecurso={
+            alterarRecursoNovaFicha
+          }
+
+          onAlterarTipo={
+            alterarTipoFormulario
+          }
+
+          inputFotoRef={
+            inputFotoRef
+          }
+
+          selecionarAvatar={
+            selecionarAvatar
+          }
+
+          abrirSeletorDeFoto={() =>
+            inputFotoRef
+              .current
+              ?.click()
+          }
+
+          removerAvatar={() =>
+            setNovaFicha(
+              anterior => ({
+                ...anterior,
+                imagem: ""
+              })
+            )
+          }
+
+          usarImagemPorUrl={
+            url =>
+              setNovaFicha(
+                anterior => ({
+                  ...anterior,
+                  imagem: url
+                })
+              )
+          }
+
+          onCriar={
+            criarFicha
+          }
+
+          onVoltar={() =>
+            setCriandoFicha(
+              false
+            )
+          }
+        />
+      );
+    }
 
 
-  if (selecionandoCampanha) {
-    return <MinhasCampanhas campanhas={campanhas} onEntrar={id => { setCampanhaAtivaId(id); setSelecionandoCampanha(false); }} />;
-  }
+    if (
+      editandoFicha &&
+      fichaAtual
+    ) {
+      return (
+        <CriadorEntidade
+          modo="editar"
+
+          configuracao={
+            configuracaoCampanha
+          }
+
+          novaFicha={
+            novaFicha
+          }
+
+          tipoEntidade={
+            tipoEntidadeEdicao
+          }
+
+          tiposPermitidos={
+            tiposEdicaoPermitidos
+          }
+
+          podeAlterarTipo={
+            eMestreAtual
+          }
+
+          nomeProprietario={
+            obterNomeParticipante(
+              fichaAtual.proprietarioId
+            )
+          }
+
+          alterarCampo={
+            alterarNovaFicha
+          }
+
+          alterarAtributo={
+            alterarAtributoNovaFicha
+          }
+
+          definirAtributo={
+            definirAtributoNovaFicha
+          }
+
+          alterarRecurso={
+            alterarRecursoNovaFicha
+          }
+
+          onAlterarTipo={
+            alterarTipoFormulario
+          }
+
+          inputFotoRef={
+            inputFotoRef
+          }
+
+          selecionarAvatar={
+            selecionarAvatar
+          }
+
+          abrirSeletorDeFoto={() =>
+            inputFotoRef
+              .current
+              ?.click()
+          }
+
+          removerAvatar={() =>
+            setNovaFicha(
+              anterior => ({
+                ...anterior,
+                imagem: ""
+              })
+            )
+          }
+
+          usarImagemPorUrl={
+            url =>
+              setNovaFicha(
+                anterior => ({
+                  ...anterior,
+                  imagem: url
+                })
+              )
+          }
+
+          onSalvar={
+            salvarEdicao
+          }
+
+          onVoltar={() =>
+            setEditandoFicha(
+              false
+            )
+          }
+        />
+      );
+    }
 
 
-  if (
-    criandoFicha
-  ) {
-    return (
-      <CriadorEntidade
-        modo="criar"
+    if (!fichaAtual && areaCampanhaAtiva === "configuracoes" && podeConfigurar) {
+      return <ConfiguracoesCampanha campanha={campanhaAtual} participantes={campanhaAtual?.participantes || []}
+        onAlterarPermissaoParticipante={alterarPermissaoParticipante} onConvidarParticipante={convidarJogador}
+        onRemoverParticipante={removerJogador} onVoltar={() => setAreaCampanhaAtiva(null)} />;
+    }
 
-        configuracao={
-          configuracaoCampanha
-        }
+    if (!fichaAtual && areaCampanhaAtiva === "equipe") {
+      return <EquipeCampanha campanha={campanhaAtual} entidades={fichas} podeEditar={possuiPermissao(campanhaAtual, "editarConfiguracao")} onSalvar={salvarModuloCampanha} onVoltar={() => setAreaCampanhaAtiva(null)} />;
+    }
 
-        novaFicha={
-          novaFicha
-        }
 
-        tipoEntidade={
-          tipoEntidadeEdicao
-        }
+    if (!fichaAtual && areaCampanhaAtiva === "jornada") {
+      return <JornadaCampanha campanha={campanhaAtual} entidades={fichas} podeEditar={possuiPermissao(campanhaAtual, "editarConfiguracao")} onSalvar={salvarModuloCampanha} onVoltar={() => setAreaCampanhaAtiva(null)} />;
+    }
 
-        tiposPermitidos={
-          tiposCriacaoPermitidos
-        }
 
-        podeAlterarTipo
+    if (!fichaAtual && areaCampanhaAtiva === "vinculos") {
+      return <VinculosCampanha entidades={fichas} onAbrir={ficha => abrirFicha(ficha, ORIGENS_FICHA.VINCULOS)} onVoltar={() => setAreaCampanhaAtiva(null)} />;
+    }
 
-        nomeProprietario={
-          obterNomeParticipante(
+
+    if (
+      !fichaAtual &&
+      areaCampanhaAtiva ===
+        AREA_ANOTACOES
+    ) {
+      return (
+        <AnotacoesCampanha
+          campanha={
+            campanhaAtual
+          }
+
+          anotacoes={
+            anotacoesVisiveis
+          }
+
+          participantes={
+            campanhaAtual
+              ?.participantes ||
+            []
+          }
+
+          usuarioAtualId={
             usuarioAtualId
-          )
-        }
+          }
 
-        alterarCampo={
-          alterarNovaFicha
-        }
-
-        alterarAtributo={
-          alterarAtributoNovaFicha
-        }
-
-        definirAtributo={
-          definirAtributoNovaFicha
-        }
-
-        alterarRecurso={
-          alterarRecursoNovaFicha
-        }
-
-        onAlterarTipo={
-          alterarTipoFormulario
-        }
-
-        inputFotoRef={
-          inputFotoRef
-        }
-
-        selecionarAvatar={
-          selecionarAvatar
-        }
-
-        abrirSeletorDeFoto={() =>
-          inputFotoRef
-            .current
-            ?.click()
-        }
-
-        removerAvatar={() =>
-          setNovaFicha(
-            anterior => ({
-              ...anterior,
-              imagem: ""
-            })
-          )
-        }
-
-        usarImagemPorUrl={
-          url =>
-            setNovaFicha(
-              anterior => ({
-                ...anterior,
-                imagem: url
-              })
+          onVoltar={() =>
+            setAreaCampanhaAtiva(
+              null
             )
-        }
+          }
 
-        onCriar={
-          criarFicha
-        }
+          onCriarAnotacao={
+            criarAnotacao
+          }
 
-        onVoltar={() =>
-          setCriandoFicha(
-            false
-          )
-        }
-      />
-    );
-  }
+          onAtualizarAnotacao={
+            atualizarAnotacao
+          }
+
+          onExcluirAnotacao={
+            excluirAnotacao
+          }
+        />
+      );
+    }
 
 
-  if (
-    editandoFicha &&
-    fichaAtual
-  ) {
+    if (
+      !fichaAtual &&
+      areaEntidadesAtiva
+    ) {
+      return (
+        <AreaEntidades
+          area={
+            areaEntidadesAtiva
+          }
+
+          campanha={
+            campanhaAtual
+          }
+
+          entidades={
+            fichas
+          }
+
+          participantes={
+            campanhaAtual
+              ?.participantes ||
+            []
+          }
+
+          usuarioAtualId={
+            usuarioAtualId
+          }
+
+          onVoltar={() => {
+            setAreaEntidadesAtiva(
+              null
+            );
+
+            setOrigemFicha(
+              ORIGENS_FICHA.DASHBOARD
+            );
+          }}
+
+          onNovaEntidade={
+            abrirCriacaoEntidade
+          }
+
+          onAbrirEntidade={
+            abrirFicha
+          }
+
+          onArquivarEntidade={
+            arquivarFicha
+          }
+
+          onExcluirEntidade={
+            excluirFicha
+          }
+
+          onAlterarVisibilidadeEntidade={
+            alterarVisibilidadeFicha
+          }
+
+          onAlterarTipoEntidade={
+            alterarTipoEntidade
+          }
+        />
+      );
+    }
+
+
+    if (!fichaAtual && diretorioAberto) {
+      const somentePersonagens = telaPainel === "personagens";
+      return <ManagerDirectory section={telaPainel} records={somentePersonagens ? personagens : fichasVisiveis}
+        open={abrirFicha} onNewSheet={podeCriarFicha && (somentePersonagens || telaPainel === "fichas") ? abrirCriacao : undefined} />;
+    }
+
+    if (!fichaAtual && telaPainel === "inicio") {
+      return <ManagerHome campaign={campanhaAtual} campaigns={campanhas.length} characters={personagens}
+        sheetCount={fichasVisiveis.length} notes={anotacoesVisiveis.length}
+        navigate={navegarPainel} onOpenSheet={abrirFicha} onNewSheet={abrirCriacao} canCreate={podeCriarFicha} />;
+    }
+
+    if (
+      !fichaAtual
+    ) {
+      return (
+        <DashboardCampanha
+          campanha={
+            campanhaAtual
+          }
+
+          entidades={
+            fichas
+          }
+
+          ultimaEntidade={
+            ultimaEntidade
+          }
+
+          participantes={
+            campanhaAtual
+              ?.participantes ||
+            []
+          }
+
+          usuarioAtualId={
+            usuarioAtualId
+          }
+
+          onAbrirConfiguracoes={() => abrirArea("configuracoes")}
+
+          quantidadeAnotacoes={
+            anotacoesVisiveis.length
+          }
+
+          estadoArquivo={
+            estadoArquivo
+          }
+
+          onEstadoArquivoChange={
+            setEstadoArquivo
+          }
+
+          onContinuar={
+            abrirFicha
+          }
+
+          onAbrirEntidade={
+            abrirFicha
+          }
+
+          onNovaFicha={
+            abrirCriacao
+          }
+
+          onArquivarEntidade={
+            arquivarFicha
+          }
+
+          onRestaurarEntidade={
+            restaurarFicha
+          }
+
+          onExcluirEntidade={
+            excluirFicha
+          }
+
+          onAlterarVisibilidadeEntidade={
+            alterarVisibilidadeFicha
+          }
+
+          onAlterarTipoEntidade={
+            alterarTipoEntidade
+          }
+
+          onAbrirArea={
+            abrirArea
+          }
+        />
+      );
+    }
+
+
     return (
-      <CriadorEntidade
-        modo="editar"
-
-        configuracao={
-          configuracaoCampanha
+      <FichaDetalhes
+        moduloInicial={["habilidades", "inventario"].includes(telaPainel) ? telaPainel : undefined}
+        ficha={
+          fichaAtual
         }
 
-        novaFicha={
-          novaFicha
-        }
-
-        tipoEntidade={
-          tipoEntidadeEdicao
-        }
-
-        tiposPermitidos={
-          tiposEdicaoPermitidos
-        }
-
-        podeAlterarTipo={
-          eMestreAtual
-        }
-
-        nomeProprietario={
-          obterNomeParticipante(
-            fichaAtual.proprietarioId
-          )
-        }
-
-        alterarCampo={
-          alterarNovaFicha
-        }
-
-        alterarAtributo={
-          alterarAtributoNovaFicha
-        }
-
-        definirAtributo={
-          definirAtributoNovaFicha
-        }
-
-        alterarRecurso={
-          alterarRecursoNovaFicha
-        }
-
-        onAlterarTipo={
-          alterarTipoFormulario
-        }
-
-        inputFotoRef={
-          inputFotoRef
-        }
-
-        selecionarAvatar={
-          selecionarAvatar
-        }
-
-        abrirSeletorDeFoto={() =>
-          inputFotoRef
-            .current
-            ?.click()
-        }
-
-        removerAvatar={() =>
-          setNovaFicha(
-            anterior => ({
-              ...anterior,
-              imagem: ""
-            })
-          )
-        }
-
-        usarImagemPorUrl={
-          url =>
-            setNovaFicha(
-              anterior => ({
-                ...anterior,
-                imagem: url
-              })
-            )
-        }
-
-        onSalvar={
-          salvarEdicao
-        }
-
-        onVoltar={() =>
-          setEditandoFicha(
-            false
-          )
-        }
-      />
-    );
-  }
-
-
-  if (!fichaAtual && areaCampanhaAtiva === "equipe") {
-    return <EquipeCampanha campanha={campanhaAtual} entidades={fichas} podeEditar={possuiPermissao(campanhaAtual, "editarConfiguracao")} onSalvar={salvarModuloCampanha} onVoltar={() => setAreaCampanhaAtiva(null)} />;
-  }
-
-
-  if (!fichaAtual && areaCampanhaAtiva === "jornada") {
-    return <JornadaCampanha campanha={campanhaAtual} entidades={fichas} podeEditar={possuiPermissao(campanhaAtual, "editarConfiguracao")} onSalvar={salvarModuloCampanha} onVoltar={() => setAreaCampanhaAtiva(null)} />;
-  }
-
-
-  if (!fichaAtual && areaCampanhaAtiva === "vinculos") {
-    return <VinculosCampanha entidades={fichas} onAbrir={ficha => abrirFicha(ficha, ORIGENS_FICHA.VINCULOS)} onVoltar={() => setAreaCampanhaAtiva(null)} />;
-  }
-
-
-  if (
-    !fichaAtual &&
-    areaCampanhaAtiva ===
-      AREA_ANOTACOES
-  ) {
-    return (
-      <AnotacoesCampanha
-        campanha={
-          campanhaAtual
-        }
-
-        anotacoes={
-          anotacoesVisiveis
-        }
-
-        participantes={
-          campanhaAtual
-            ?.participantes ||
-          []
-        }
-
-        usuarioAtualId={
-          usuarioAtualId
-        }
-
-        onVoltar={() =>
-          setAreaCampanhaAtiva(
-            null
-          )
-        }
-
-        onCriarAnotacao={
-          criarAnotacao
-        }
-
-        onAtualizarAnotacao={
-          atualizarAnotacao
-        }
-
-        onExcluirAnotacao={
-          excluirAnotacao
-        }
-      />
-    );
-  }
-
-
-  if (
-    !fichaAtual &&
-    areaEntidadesAtiva
-  ) {
-    return (
-      <AreaEntidades
-        area={
-          areaEntidadesAtiva
-        }
-
-        campanha={
-          campanhaAtual
-        }
-
-        entidades={
+        entidadesCampanha={
           fichas
         }
 
-        participantes={
-          campanhaAtual
-            ?.participantes ||
-          []
+        podeEditarDados={
+          podeEditarEntidade(
+            campanhaAtual,
+            fichaAtual
+          )
         }
 
-        usuarioAtualId={
-          usuarioAtualId
+        onSalvarModulo={
+          salvarModuloFicha
         }
 
-        onVoltar={() => {
-          setAreaEntidadesAtiva(
-            null
-          );
-
-          setOrigemFicha(
-            ORIGENS_FICHA.DASHBOARD
-          );
-        }}
-
-        onNovaEntidade={
-          abrirCriacaoEntidade
+        alterarVida={
+          alterarVida
         }
 
-        onAbrirEntidade={
-          abrirFicha
+        alterarGP={
+          alterarGP
         }
 
-        onArquivarEntidade={
-          arquivarFicha
+        alterarTP={
+          alterarTP
         }
 
-        onExcluirEntidade={
-          excluirFicha
+        alterarRitmoIndividual={
+          alterarRitmoIndividual
         }
 
-        onAlterarVisibilidadeEntidade={
-          alterarVisibilidadeFicha
+        alterarRitmoEquipe={
+          alterarRitmoEquipe
         }
 
-        onAlterarTipoEntidade={
-          alterarTipoEntidade
-        }
-      />
-    );
-  }
-
-
-  if (
-    !fichaAtual
-  ) {
-    return (
-      <DashboardCampanha
-        campanha={
-          campanhaAtual
+        alterarMomentum={
+          alterarMomentum
         }
 
-        entidades={
-          fichas
+        definirMomentum={
+          definirMomentum
         }
 
-        ultimaEntidade={
-          ultimaEntidade
+        definirMaximoRecurso={
+          definirMaximoRecurso
         }
 
-        participantes={
-          campanhaAtual
-            ?.participantes ||
-          []
+        definirEstado={
+          definirEstado
         }
 
-        usuarioAtualId={
-          usuarioAtualId
+        alterarAtributo={
+          alterarAtributo
         }
 
-        onAlterarPermissaoParticipante={
-          alterarPermissaoParticipante
+        definirAtributo={
+          definirAtributo
         }
 
-        onConvidarParticipante={convidarJogador}
-        onRemoverParticipante={removerJogador}
-
-        quantidadeAnotacoes={
-          anotacoesVisiveis.length
+        adquirirArquetipo={
+          adquirirArquetipo
         }
 
-        estadoArquivo={
-          estadoArquivo
+        definirArquetipoDestaque={
+          definirArquetipoDestaque
         }
 
-        onEstadoArquivoChange={
-          setEstadoArquivo
+        removerArquetipo={
+          removerArquetipo
         }
 
-        onContinuar={
-          abrirFicha
+        adquirirTalentoPosicional={
+          adquirirTalentoPosicional
         }
 
-        onAbrirEntidade={
-          abrirFicha
+        removerTalentoPosicional={
+          removerTalentoPosicional
         }
 
-        onNovaFicha={
-          abrirCriacao
+        atualizarTalentoPosicional={
+          atualizarTalentoPosicional
         }
 
-        onArquivarEntidade={
-          arquivarFicha
+        calcularPorcentagem={
+          calcularPorcentagem
         }
 
-        onRestaurarEntidade={
-          restaurarFicha
+        criarHabilidade={
+          criarHabilidade
         }
 
-        onExcluirEntidade={
-          excluirFicha
+        editarHabilidade={
+          editarHabilidade
         }
 
-        onAlterarVisibilidadeEntidade={
-          alterarVisibilidadeFicha
+        excluirHabilidade={
+          excluirHabilidade
         }
 
-        onAlterarTipoEntidade={
-          alterarTipoEntidade
+        onEditarPersonagem={() =>
+          abrirEdicao(
+            fichaAtual
+          )
         }
 
-        onAbrirArea={
-          abrirArea
+        onVoltar={
+          voltarDaFicha
         }
       />
     );
   }
 
+  const active = areaCampanhaAtiva || (fichaAtual && !diretorioAberto ? "fichas" : telaPainel === "campanha" ? "inicio" : telaPainel);
+  const pageKey = [idCampanhaAtual, telaPainel, areaCampanhaAtiva, areaEntidadesAtiva, fichaAtual?.id,
+    criandoFicha, editandoFicha, dadosRemotosCarregados].join(":");
 
-  return (
-    <FichaDetalhes
-      ficha={
-        fichaAtual
-      }
-
-      entidadesCampanha={
-        fichas
-      }
-
-      podeEditarDados={
-        podeEditarEntidade(
-          campanhaAtual,
-          fichaAtual
-        )
-      }
-
-      onSalvarModulo={
-        salvarModuloFicha
-      }
-
-      alterarVida={
-        alterarVida
-      }
-
-      alterarGP={
-        alterarGP
-      }
-
-      alterarTP={
-        alterarTP
-      }
-
-      alterarRitmoIndividual={
-        alterarRitmoIndividual
-      }
-
-      alterarRitmoEquipe={
-        alterarRitmoEquipe
-      }
-
-      alterarMomentum={
-        alterarMomentum
-      }
-
-      definirMomentum={
-        definirMomentum
-      }
-
-      definirMaximoRecurso={
-        definirMaximoRecurso
-      }
-
-      definirEstado={
-        definirEstado
-      }
-
-      alterarAtributo={
-        alterarAtributo
-      }
-
-      definirAtributo={
-        definirAtributo
-      }
-
-      adquirirArquetipo={
-        adquirirArquetipo
-      }
-
-      definirArquetipoDestaque={
-        definirArquetipoDestaque
-      }
-
-      removerArquetipo={
-        removerArquetipo
-      }
-
-      adquirirTalentoPosicional={
-        adquirirTalentoPosicional
-      }
-
-      removerTalentoPosicional={
-        removerTalentoPosicional
-      }
-
-      atualizarTalentoPosicional={
-        atualizarTalentoPosicional
-      }
-
-      calcularPorcentagem={
-        calcularPorcentagem
-      }
-
-      criarHabilidade={
-        criarHabilidade
-      }
-
-      editarHabilidade={
-        editarHabilidade
-      }
-
-      excluirHabilidade={
-        excluirHabilidade
-      }
-
-      onEditarPersonagem={() =>
-        abrirEdicao(
-          fichaAtual
-        )
-      }
-
-      onVoltar={
-        voltarDaFicha
-      }
-    />
-  );
+  return <ManagerLayout user={usuario} role={campanhaAtual ? (eMestreAtual ? "Mestre" : "Jogador") : undefined}
+    hasCampaign={Boolean(campanhaAtual)} canConfigure={podeConfigurar} active={active} pageKey={pageKey}
+    navigate={navegarPainel} onLogout={sair}>
+    {renderizarPagina()}
+  </ManagerLayout>;
 }
 
 
@@ -6207,7 +6258,7 @@ function AplicacaoAutenticada() {
   } = useAuth();
 
   if (carregando) {
-    return <main className="auth-shell"><section className="auth-card"><h1>RPG Manager</h1><p>Validando sessão...</p></section></main>;
+    return <main className="auth-shell"><ManagerLoading>Validando sessão…</ManagerLoading></main>;
   }
 
 
@@ -6215,10 +6266,7 @@ function AplicacaoAutenticada() {
     return <AuthScreen configurado={configurado} />;
   }
 
-  return <>
-    <button className="session-logout" type="button" onClick={sair}>Sair</button>
-    <RPGManager usuario={usuario} />
-  </>;
+  return <RPGManager usuario={usuario} sair={sair} />;
 }
 
 

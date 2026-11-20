@@ -8,7 +8,7 @@
       rgba(255, 208, 0, 0.05),
       transparent 30%
     ),
-    #0c0f16;
+    var(--rpg-bg);
 
   color: #f4f5f7;
 
@@ -43,12 +43,7 @@
   gap: 16px;
 
   border-bottom:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 }
 
 
@@ -62,12 +57,7 @@
   place-items: center;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.1
-    );
+    1px solid rgb(82 187 255 / 0.2);
 
   border-radius: 14px;
 
@@ -89,12 +79,7 @@
 
 .anotacoes-voltar:hover {
   background:
-    rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    rgb(82 187 255 / 0.16);
 }
 
 
@@ -129,7 +114,7 @@
 .anotacoes-etiqueta {
   margin: 0;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 10px;
   font-weight: 900;
@@ -151,7 +136,7 @@
 
   border-radius: 10px;
 
-  background: #ffd000;
+  background: var(--rpg-gold);
 
   color: #151515;
 
@@ -210,12 +195,7 @@
   gap: 12px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 17px;
 
@@ -238,12 +218,7 @@
   padding: 10px 12px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 10px;
 
@@ -299,12 +274,7 @@
   gap: 6px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.065
-    );
+    1px solid rgb(82 187 255 / 0.13);
 
   border-radius: 11px;
 
@@ -420,12 +390,7 @@
   flex-direction: column;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 17px;
 
@@ -481,12 +446,7 @@
   border: 0;
 
   border-bottom:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   outline: 0;
 
@@ -522,12 +482,7 @@
   padding: 15px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 12px;
 
@@ -614,12 +569,7 @@
   padding: 9px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 8px;
 
@@ -658,7 +608,7 @@
 
 
 .anotacoes-fixar input {
-  accent-color: #ffd000;
+  accent-color: var(--rpg-gold);
 }
 
 
@@ -834,12 +784,7 @@
   border-radius: 10px;
 
   background:
-    rgba(
-      255,
-      255,
-      255,
-      0.12
-    );
+    rgb(82 187 255 / 0.24);
 }
 
 

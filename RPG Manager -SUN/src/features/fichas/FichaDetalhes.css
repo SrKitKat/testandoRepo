@@ -8,7 +8,7 @@
       rgba(255, 208, 0, 0.035),
       transparent 28%
     ),
-    #0c0f16;
+    var(--rpg-bg);
 
   color: #edf0f5;
   box-sizing: border-box;
@@ -44,7 +44,7 @@
 
   border-bottom:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 }
 
 
@@ -59,7 +59,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.09);
+    rgb(82 187 255 / 0.18);
 
   border-radius: 12px;
 
@@ -76,7 +76,7 @@
 
 .ficha-nova-voltar:hover {
   background:
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 }
 
 
@@ -93,7 +93,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.08);
+    rgb(82 187 255 / 0.16);
 
   border-radius: 13px;
 
@@ -171,14 +171,14 @@
   background:
     rgba(255, 208, 0, 0.05);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
 .ficha-nova-arquivada {
   border:
     1px solid
-    rgba(255, 255, 255, 0.08);
+    rgb(82 187 255 / 0.16);
 
   background:
     rgba(255, 255, 255, 0.035);
@@ -230,7 +230,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 16px;
 
@@ -312,7 +312,7 @@
   background:
     rgba(255, 208, 0, 0.055);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -338,7 +338,7 @@
 .ficha-nova-painel {
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 15px;
 
@@ -350,7 +350,7 @@
 .ficha-nova-etiqueta {
   margin: 0;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 9px;
   font-weight: 900;
@@ -366,7 +366,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 17px;
 
@@ -429,7 +429,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 10px;
 
@@ -502,7 +502,7 @@
   background:
     rgba(255, 208, 0, 0.055);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -511,7 +511,7 @@
   background:
     rgba(255, 208, 0, 0.11);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -646,7 +646,7 @@
 
   background: transparent;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font: inherit;
 
@@ -702,7 +702,7 @@
   border-radius: 999px;
 
   background:
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 }
 
 
@@ -714,7 +714,7 @@
   background:
     linear-gradient(
       90deg,
-      #ffd000,
+      var(--rpg-gold),
       #86d8ff
     );
 
@@ -761,7 +761,7 @@
 
   background: transparent;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font: inherit;
 
@@ -907,7 +907,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 12px;
 
@@ -1122,7 +1122,7 @@
     1px solid
     rgba(255, 208, 0, 0.25);
 
-  background: #ffd000;
+  background: var(--rpg-gold);
 
   color: #11151c;
 }
@@ -1131,7 +1131,7 @@
 .ficha-nova-botao-secundario {
   border:
     1px solid
-    rgba(255, 255, 255, 0.08);
+    rgb(82 187 255 / 0.16);
 
   background:
     rgba(255, 255, 255, 0.03);
@@ -1171,7 +1171,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 13px;
 
@@ -1191,11 +1191,11 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 10px;
 
-  background: #151a23;
+  background: var(--rpg-surface);
 
   font-size: 27px;
 }
@@ -1257,7 +1257,7 @@
 
 
 .ficha-nova-habilidade-meta strong {
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 11px;
 }
@@ -1300,7 +1300,7 @@
 
 
 .ficha-nova-habilidade-detalhes span {
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 9px;
   font-weight: 900;
@@ -1335,7 +1335,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 7px;
 
@@ -1398,7 +1398,7 @@
 .ficha-nova-atributos-legenda > span {
   flex: 0 0 auto;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 9px;
   font-weight: 900;
@@ -1495,7 +1495,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 10px;
 
@@ -1506,7 +1506,7 @@
 
 .ficha-nova-atributo:hover {
   border-color:
-    rgba(255, 255, 255, 0.1);
+    rgb(82 187 255 / 0.2);
 
   background:
     rgba(255, 255, 255, 0.026);
@@ -1558,11 +1558,11 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 7px;
 
-  background: #11151d;
+  background: var(--rpg-surface);
 
   color: #eef0f4;
 
@@ -1621,7 +1621,7 @@
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 14px;
 
@@ -1659,7 +1659,7 @@
   background:
     rgba(255, 208, 0, 0.04);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 22px;
 }
@@ -1732,7 +1732,7 @@ header p:last-child {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 7px;
 
@@ -1754,7 +1754,7 @@ header p:last-child {
   border-color:
     rgba(255, 208, 0, 0.17);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -1793,13 +1793,13 @@ header p:last-child {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.08);
+    rgb(82 187 255 / 0.16);
 
   border-radius: 7px;
 
   outline: 0;
 
-  background: #10141c;
+  background: var(--rpg-inset);
 
   color: #edf0f5;
 
@@ -1910,7 +1910,7 @@ p {
   background:
     rgba(255, 208, 0, 0.035);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -2006,7 +2006,7 @@ span {
 
 .ficha-nova-arquetipos-destaque-info
 strong {
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 11px;
 }
@@ -2035,7 +2035,7 @@ strong {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 13px;
 
@@ -2130,7 +2130,7 @@ strong {
   background:
     rgba(255, 208, 0, 0.09);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -2158,7 +2158,7 @@ blockquote {
 
   border-left:
     2px solid
-    #ffd000;
+    var(--rpg-gold);
 
   background:
     rgba(255, 255, 255, 0.018);
@@ -2190,7 +2190,7 @@ blockquote {
 
 
 .ficha-nova-passiva strong {
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 12px;
 }
@@ -2276,7 +2276,7 @@ button {
   background:
     rgba(255, 208, 0, 0.035);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font: inherit;
 
@@ -2404,7 +2404,7 @@ p:last-child {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 7px;
 
@@ -2429,7 +2429,7 @@ p:last-child {
   background:
     rgba(255, 208, 0, 0.05);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -2456,7 +2456,7 @@ p:last-child {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 10px;
 
@@ -2572,7 +2572,7 @@ blockquote {
 
 .ficha-nova-arquetipo-biblioteca-passiva
 span {
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 9px;
   font-weight: 900;
@@ -2615,7 +2615,7 @@ button {
   background:
     rgba(255, 208, 0, 0.045);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font: inherit;
 
@@ -2691,7 +2691,7 @@ span {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 13px;
 
@@ -2773,7 +2773,7 @@ strong {
   background:
     rgba(255, 208, 0, 0.09);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -2869,7 +2869,7 @@ button {
   background:
     rgba(255, 208, 0, 0.035);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font: inherit;
 
@@ -2942,13 +2942,13 @@ textarea {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.08);
+    rgb(82 187 255 / 0.16);
 
   border-radius: 7px;
 
   outline: 0;
 
-  background: #10141c;
+  background: var(--rpg-inset);
 
   color: #eef0f4;
 
@@ -3002,7 +3002,7 @@ button {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 7px;
 
@@ -3028,7 +3028,7 @@ button {
   background:
     rgba(255, 208, 0, 0.05);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -3105,7 +3105,7 @@ p:last-child {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 7px;
 
@@ -3130,7 +3130,7 @@ p:last-child {
   background:
     rgba(255, 208, 0, 0.05);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -3159,7 +3159,7 @@ p:last-child {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 10px;
 
@@ -3243,7 +3243,7 @@ em {
   background:
     rgba(255, 208, 0, 0.08);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 7px;
   font-weight: 900;
@@ -3297,7 +3297,7 @@ button {
   background:
     rgba(255, 208, 0, 0.045);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font: inherit;
 
@@ -3336,7 +3336,7 @@ button {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 14px;
 
@@ -3437,7 +3437,7 @@ button {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 7px;
 
@@ -3559,7 +3559,7 @@ button {
     linear-gradient(
       90deg,
       #ff8a4d,
-      #ffd000
+      var(--rpg-gold)
     );
 }
 
@@ -3640,7 +3640,7 @@ button {
 
   outline: 0;
 
-  background: #11151d;
+  background: var(--rpg-surface);
 
   color: #f2f2f4;
 
@@ -3685,7 +3685,7 @@ button {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 14px;
 
@@ -3712,7 +3712,7 @@ button {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 11px;
 
@@ -3757,7 +3757,7 @@ button {
 
   outline: 0;
 
-  background: #10141c;
+  background: var(--rpg-inset);
 
   color: #edf0f5;
 
@@ -3897,7 +3897,7 @@ button {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.065);
+    rgb(82 187 255 / 0.13);
 
   border-radius: 8px;
 
@@ -3920,7 +3920,7 @@ button:hover {
   border-color:
     rgba(255, 208, 0, 0.13);
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -4043,7 +4043,7 @@ button:hover {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.09);
+    rgb(82 187 255 / 0.18);
 
   border-radius: 16px;
 
@@ -4085,7 +4085,7 @@ button:hover {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 8px;
 
@@ -4142,7 +4142,7 @@ button:hover {
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgb(82 187 255 / 0.14);
 
   border-radius: 8px;
 

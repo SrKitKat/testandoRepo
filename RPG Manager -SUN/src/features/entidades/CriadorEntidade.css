@@ -8,7 +8,7 @@
       rgba(255, 208, 0, 0.055),
       transparent 30%
     ),
-    #0c0f16;
+    var(--rpg-bg);
 
   color: #f4f5f7;
 
@@ -43,12 +43,7 @@
   gap: 17px;
 
   border-bottom:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 }
 
 
@@ -62,12 +57,7 @@
   place-items: center;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.1
-    );
+    1px solid rgb(82 187 255 / 0.2);
 
   border-radius: 14px;
 
@@ -89,12 +79,7 @@
 
 .criador-entidade-voltar:hover {
   background:
-    rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    rgb(82 187 255 / 0.16);
 }
 
 
@@ -142,7 +127,7 @@
 .criador-entidade-etiqueta {
   margin: 0;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 10px;
   font-weight: 900;
@@ -223,12 +208,7 @@
   gap: 7px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 10px;
 
@@ -297,7 +277,7 @@
 
 .criador-entidade-etapa-ativa > span,
 .criador-entidade-etapa-concluida > span {
-  background: #ffd000;
+  background: var(--rpg-gold);
 
   color: #161616;
 }
@@ -311,12 +291,7 @@
   padding: 24px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 18px;
 
@@ -389,12 +364,7 @@
   margin-bottom: 5px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 18px;
 
@@ -432,12 +402,7 @@
   padding: 9px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-right: 0;
 
@@ -465,12 +430,7 @@
   padding: 0 10px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius:
     0 9px 9px 0;
@@ -536,12 +496,7 @@
   padding: 11px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 9px;
 
@@ -576,7 +531,7 @@
 
 
 .criador-entidade-campo select option {
-  color: #101219;
+  color: var(--rpg-inset);
 
   background: #f4f4f4;
 }
@@ -609,12 +564,7 @@
   gap: 15px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 12px;
 
@@ -642,12 +592,7 @@
   width: 34px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   background:
     rgba(
@@ -681,19 +626,14 @@
   padding: 8px 4px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-left: 0;
   border-right: 0;
 
   outline: 0;
 
-  background: #11151d;
+  background: var(--rpg-surface);
 
   color: #f4f5f7;
 
@@ -730,12 +670,7 @@
   gap: 14px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 12px;
 
@@ -842,12 +777,7 @@
   padding: 18px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 15px;
 
@@ -931,7 +861,7 @@
 
 
 .criador-entidade-colecao-regra strong {
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 11px;
 }
@@ -1220,7 +1150,7 @@
 
 
 .criador-entidade-seletor-topo span {
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 8px;
   font-weight: 900;
@@ -1263,12 +1193,7 @@
   gap: 6px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 8px;
 
@@ -1304,7 +1229,7 @@
       0.08
     );
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 6px;
   font-weight: 900;
@@ -1378,12 +1303,7 @@
   align-items: start;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 11px;
 
@@ -1451,12 +1371,7 @@
   place-items: center;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 9px;
 
@@ -1518,7 +1433,7 @@
       0.12
     );
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 }
 
 
@@ -1588,12 +1503,7 @@
   place-items: center;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.08
-    );
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 16px;
 
@@ -1644,7 +1554,7 @@
 
   border-radius: 6px;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 8px;
   font-weight: 900;
@@ -1677,12 +1587,7 @@
   gap: 5px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 11px;
 
@@ -1795,7 +1700,7 @@
 
   border-radius: 10px;
 
-  background: #ffd000;
+  background: var(--rpg-gold);
 
   color: #151515;
 
@@ -1810,12 +1715,7 @@
   padding: 11px 14px;
 
   border:
-    1px solid rgba(
-      255,
-      255,
-      255,
-      0.09
-    );
+    1px solid rgb(82 187 255 / 0.18);
 
   border-radius: 9px;
 

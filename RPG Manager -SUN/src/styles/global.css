@@ -1,7 +1,7 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
   color: #ffffff;
-  background-color: #10131a;
+  background-color: var(--rpg-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,7 +14,7 @@ html {
   margin: 0;
   padding: 0;
 
-  background-color: #10131a;
+  background-color: var(--rpg-bg);
 }
 
 body {
@@ -24,7 +24,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
-  background-color: #10131a;
+  background-color: var(--rpg-bg);
 }
 
 #root {
@@ -37,4 +37,54 @@ input,
 select,
 textarea {
   font: inherit;
+}
+/* Shared palette from the RPG Manager entry screen. */
+:root {
+  --rpg-bg: #06152b;
+  --rpg-inset: #081a32;
+  --rpg-surface: #0d2541;
+  --rpg-raised: #143351;
+  --rpg-line: #28557a;
+  --rpg-line-bright: #4089b6;
+  --rpg-gold: #ffda38;
+  --rpg-electric: #77d9ff;
+  --rpg-action: linear-gradient(170deg, #ffe759, #ffcc17 45%, #ff9a17);
+  --rpg-page: radial-gradient(ellipse at 18% 0%, #0d416a 0%, transparent 48%),
+    radial-gradient(ellipse at 100% 8%, #0a294d 0%, transparent 48%), var(--rpg-bg);
+}
+
+:is(.app, .dashboard-campanha, .auth-shell, .ficha-nova, .area-entidades, .anotacoes-campanha,
+  .config-campanha, .configuracoes-campanha, .criador-entidade, .editor-entidade, .campanha-modulo) {
+  background: var(--rpg-page);
+}
+
+:is(.dashboard-cabecalho, .dashboard-continuar, .auth-shell .auth-card, .app .header, .config-topo,
+  .anotacoes-topo, .area-entidades-topo, .criador-entidade-topo, .editor-entidade-topo, .ficha-nova-topo,
+  .campanha-modulo-topo) {
+  border-color: var(--rpg-line-bright);
+}
+
+:is(.dashboard-cabecalho, .dashboard-continuar, .auth-shell .auth-card, .app .header) {
+  background: linear-gradient(125deg, var(--rpg-surface), var(--rpg-inset));
+  box-shadow: 0 5px 25px #020a1866, inset 0 1px #77d9ff2b;
+}
+
+.auth-shell .auth-card { border-top: 2px solid var(--rpg-gold); }
+.auth-shell .auth-first-actions button:first-child,
+.auth-shell .auth-card form button[type="submit"],
+.auth-shell .campaign-picker-item button,
+.dashboard-botao-principal:not(:disabled),
+.campanha-modulo .campanha-modulo-salvar {
+  background: var(--rpg-action);
+  color: #061b38;
+  font-weight: 800;
+}
+
+:is(.dashboard-superior, .dashboard-secao-etiqueta, .auth-kicker, .config-etiqueta, .anotacoes-etiqueta) {
+  color: var(--rpg-gold);
+}
+
+:where(button, a, summary, input, select, textarea):focus-visible {
+  outline: 2px solid var(--rpg-electric);
+  outline-offset: 3px;
 }

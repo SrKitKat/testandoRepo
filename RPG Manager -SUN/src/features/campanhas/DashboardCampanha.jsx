@@ -4,9 +4,6 @@ import React, {
 
 import "./DashboardCampanha.css";
 
-import ConfiguracoesCampanha
-  from "./ConfiguracoesCampanha.jsx";
-
 import ClassificacaoEntidade
   from "../entidades/ClassificacaoEntidade.jsx";
 
@@ -51,11 +48,7 @@ function DashboardCampanha({
 
   usuarioAtualId = null,
 
-  onAlterarPermissaoParticipante,
-
-  onConvidarParticipante,
-
-  onRemoverParticipante,
+  onAbrirConfiguracoes,
 
   quantidadeAnotacoes = 0,
 
@@ -85,12 +78,6 @@ function DashboardCampanha({
 
   onAbrirArea
 }) {
-  const [
-    configuracoesAbertas,
-    setConfiguracoesAbertas
-  ] = useState(false);
-
-
   const [
     entidadeParaArquivar,
     setEntidadeParaArquivar
@@ -1490,36 +1477,6 @@ function DashboardCampanha({
   }
 
 
-  if (
-    configuracoesAbertas
-  ) {
-    return (
-      <ConfiguracoesCampanha
-        campanha={
-          campanha
-        }
-
-        participantes={
-          participantes
-        }
-
-        onAlterarPermissaoParticipante={
-          onAlterarPermissaoParticipante
-        }
-
-        onConvidarParticipante={onConvidarParticipante}
-        onRemoverParticipante={onRemoverParticipante}
-
-        onVoltar={() =>
-          setConfiguracoesAbertas(
-            false
-          )
-        }
-      />
-    );
-  }
-
-
   return (
     <div className="dashboard-campanha">
 
@@ -1996,11 +1953,7 @@ function DashboardCampanha({
             <button
               type="button"
               className="dashboard-botao-secundario"
-              onClick={() =>
-                setConfiguracoesAbertas(
-                  true
-                )
-              }
+              onClick={onAbrirConfiguracoes}
             >
               ⚙ ABRIR →
             </button>

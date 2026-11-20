@@ -92,7 +92,7 @@
   border: 1px solid #343e4c;
   border-radius: 8px;
   outline: none;
-  background: #111720;
+  background: var(--rpg-inset);
   color: #f1f3f6;
   padding: 9px 11px;
   color-scheme: dark;
@@ -112,7 +112,7 @@
 
 
 .biblioteca-habilidades-filtros option {
-  background: #111720;
+  background: var(--rpg-inset);
 }
 
 
@@ -158,9 +158,9 @@
 
 .biblioteca-habilidades-resultado-topo > button {
   min-height: 35px;
-  border: 1px solid #3b4554;
+  border: 1px solid var(--rpg-line-bright);
   border-radius: 8px;
-  background: #1b222c;
+  background: var(--rpg-surface);
   color: #dce1e8;
   cursor: pointer;
   padding: 7px 11px;
@@ -182,7 +182,7 @@
   justify-content: space-between;
   gap: 14px;
   padding: 11px 12px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 10px;
   background: #141a22;
 }
@@ -238,9 +238,9 @@
 
 .biblioteca-habilidades-paginacao button {
   min-height: 34px;
-  border: 1px solid #3b4554;
+  border: 1px solid var(--rpg-line-bright);
   border-radius: 8px;
-  background: #1b222c;
+  background: var(--rpg-surface);
   color: #dce1e8;
   cursor: pointer;
   padding: 7px 10px;
@@ -270,7 +270,7 @@
 
 .biblioteca-habilidades-paginacao-pagina-ativa {
   border-color: #d0a226 !important;
-  background: #eeb627 !important;
+  background: var(--rpg-gold) !important;
   color: #151515 !important;
 }
 
@@ -306,9 +306,9 @@
     115px minmax(0, 1fr);
   gap: 15px;
   padding: 15px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 13px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 
@@ -346,9 +346,9 @@
   min-height: 135px;
   max-height: 135px;
   overflow: hidden;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 10px;
-  background: #10161e;
+  background: var(--rpg-inset);
 }
 
 
@@ -388,9 +388,9 @@
   min-height: 230px;
   max-height: 230px;
   overflow: hidden;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 10px;
-  background: #10161e;
+  background: var(--rpg-inset);
   justify-self: start;
   align-self: center;
 }
@@ -425,13 +425,13 @@
 
   border:
     1px solid
-    #303a48;
+    var(--rpg-line);
 
   border-radius:
     10px;
 
   background:
-    #10161e;
+    var(--rpg-inset);
 
   justify-self:
     start;
@@ -462,7 +462,7 @@
 
   border:
     1px solid
-    #303a48;
+    var(--rpg-line);
 
   border-radius:
     10px;
@@ -473,7 +473,7 @@
       rgba(255, 208, 0, 0.08),
       transparent 55%
     ),
-    #10161e;
+    var(--rpg-inset);
 
   color:
     #b8bec7;
@@ -508,7 +508,7 @@
       rgba(255, 208, 0, 0.08),
       transparent 55%
     ),
-    #10161e;
+    var(--rpg-inset);
 }
 
 
@@ -684,14 +684,14 @@
 .biblioteca-habilidades-botao-principal,
 .biblioteca-habilidades-botao-adquirir {
   border: 1px solid #d0a226;
-  background: #eeb627;
+  background: var(--rpg-gold);
   color: #151515;
 }
 
 
 .biblioteca-habilidades-botao-secundario {
-  border: 1px solid #3b4554;
-  background: #1b222c;
+  border: 1px solid var(--rpg-line-bright);
+  background: var(--rpg-surface);
   color: #e8ebef;
 }
 
@@ -767,13 +767,13 @@
 
   border:
     1px solid
-    #303a48;
+    var(--rpg-line);
 
   border-radius:
     14px;
 
   background:
-    #171d26;
+    var(--rpg-surface);
 }
 
 
@@ -834,9 +834,9 @@
 .biblioteca-habilidades-resumo-grid article {
   min-width: 0;
   padding: 14px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 10px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 
@@ -862,9 +862,9 @@
 .biblioteca-habilidades-bloco {
   margin-bottom: 14px;
   padding: 17px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 12px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 
@@ -904,9 +904,9 @@
 .biblioteca-habilidades-parametros article {
   min-width: 0;
   padding: 12px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 9px;
-  background: #121820;
+  background: var(--rpg-inset);
 }
 
 
@@ -942,9 +942,9 @@
 .biblioteca-habilidades-parametro {
   min-width: 0;
   padding: 12px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 9px;
-  background: #121820;
+  background: var(--rpg-inset);
 }
 
 
@@ -1000,9 +1000,9 @@
 .biblioteca-habilidades-proveniencia > article,
 .biblioteca-habilidades-origem-grid > article {
   padding: 13px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 9px;
-  background: #121820;
+  background: var(--rpg-inset);
 }
 
 
@@ -1118,7 +1118,7 @@
 .biblioteca-habilidades-adquirir-fixo {
   margin-top: 16px;
   padding-top: 15px;
-  border-top: 1px solid #303a48;
+  border-top: 1px solid var(--rpg-line);
 }
 
 

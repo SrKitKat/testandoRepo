@@ -55,15 +55,15 @@
 }
 
 .editor-banco-voltar {
-  border: 1px solid #3a4555;
-  background: #1b222d;
+  border: 1px solid var(--rpg-line-bright);
+  background: var(--rpg-surface);
   color: #eef2f7;
 }
 
 .editor-banco-rascunho {
   border: 1px solid #665a37;
   background: #292516;
-  color: #e8c66c;
+  color: var(--rpg-gold);
 }
 
 .editor-banco-publicar {
@@ -79,8 +79,8 @@
 }
 
 .editor-banco-adicionar {
-  border: 1px solid #3a4555;
-  background: #1b222d;
+  border: 1px solid var(--rpg-line-bright);
+  background: var(--rpg-surface);
   color: #f0bd31;
 }
 
@@ -109,7 +109,7 @@
   padding: 18px;
   border: 1px solid #36404f;
   border-radius: 13px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 .editor-banco-identidade-icone {
@@ -120,7 +120,7 @@
   justify-content: center;
   border: 1px solid #3b4655;
   border-radius: 12px;
-  background: #111720;
+  background: var(--rpg-inset);
   font-size: 30px;
 }
 
@@ -165,7 +165,7 @@
 .editor-banco-status span {
   border: 1px solid #665a37;
   background: #292516;
-  color: #e8c66c;
+  color: var(--rpg-gold);
 }
 
 .editor-banco-status strong {
@@ -208,9 +208,9 @@
 .editor-banco-bloco {
   margin-bottom: 14px;
   padding: 18px;
-  border: 1px solid #303a49;
+  border: 1px solid var(--rpg-line);
   border-radius: 12px;
-  background: #171d26;
+  background: var(--rpg-surface);
 }
 
 .editor-banco-bloco > header {
@@ -285,7 +285,7 @@
   min-width: 0;
   border: 1px solid #364252;
   border-radius: 8px;
-  background: #111720;
+  background: var(--rpg-inset);
   color: #eef2f7;
   outline: none;
 }
@@ -328,9 +328,9 @@
   gap: 9px;
   max-width: 420px;
   padding: 14px;
-  border: 1px solid #303b49;
+  border: 1px solid var(--rpg-line);
   border-radius: 10px;
-  background: #131922;
+  background: var(--rpg-inset);
 }
 
 .editor-banco-campo-herdado-topo,
@@ -384,9 +384,9 @@
   gap: 8px;
   min-width: 0;
   padding: 12px;
-  border: 1px solid #303b49;
+  border: 1px solid var(--rpg-line);
   border-radius: 9px;
-  background: #131922;
+  background: var(--rpg-inset);
 }
 
 .editor-banco-parametro-personalizado {
@@ -460,9 +460,9 @@
   align-items: center;
   gap: 8px;
   padding: 9px;
-  border: 1px solid #303a48;
+  border: 1px solid var(--rpg-line);
   border-radius: 8px;
-  background: #131922;
+  background: var(--rpg-inset);
 }
 
 .editor-banco-requisito strong {
@@ -568,7 +568,7 @@
   gap: 18px;
   margin-top: 18px;
   padding-top: 17px;
-  border-top: 1px solid #303a49;
+  border-top: 1px solid var(--rpg-line);
 }
 
 

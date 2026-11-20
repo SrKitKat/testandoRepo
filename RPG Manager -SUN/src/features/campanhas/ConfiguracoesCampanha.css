@@ -8,7 +8,7 @@
       rgba(255, 208, 0, 0.055),
       transparent 30%
     ),
-    #0c0f16;
+    var(--rpg-bg);
 
   color: #f4f5f7;
 
@@ -41,7 +41,7 @@
   gap: 18px;
 
   border-bottom:
-    1px solid rgba(255, 255, 255, 0.08);
+    1px solid rgb(82 187 255 / 0.16);
 }
 
 
@@ -56,7 +56,7 @@
   place-items: center;
 
   border:
-    1px solid rgba(255, 255, 255, 0.1);
+    1px solid rgb(82 187 255 / 0.2);
 
   border-radius: 14px;
 
@@ -78,7 +78,7 @@
 
 .config-voltar:hover {
   background:
-    rgba(255, 255, 255, 0.08);
+    rgb(82 187 255 / 0.16);
 
   border-color:
     rgba(255, 208, 0, 0.3);
@@ -110,7 +110,7 @@
 .config-etiqueta {
   margin: 0;
 
-  color: #ffd000;
+  color: var(--rpg-gold);
 
   font-size: 11px;
 
@@ -170,7 +170,7 @@
   overflow: hidden;
 
   border:
-    1px solid rgba(255, 255, 255, 0.08);
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 18px;
 
@@ -198,7 +198,7 @@
   border: 0;
 
   border-bottom:
-    1px solid rgba(255, 255, 255, 0.065);
+    1px solid rgb(82 187 255 / 0.13);
 
   background: transparent;
 
@@ -314,7 +314,7 @@
   padding: 5px 7px;
 
   border:
-    1px solid rgba(255, 255, 255, 0.08);
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 7px;
 
@@ -360,7 +360,7 @@
   gap: 13px;
 
   border:
-    1px solid rgba(255, 255, 255, 0.08);
+    1px solid rgb(82 187 255 / 0.16);
 
   border-radius: 16px;
 
@@ -455,7 +455,7 @@
   gap: 16px;
 
   border:
-    1px solid rgba(255, 255, 255, 0.065);
+    1px solid rgb(82 187 255 / 0.13);
 
   border-radius: 14px;
 
@@ -548,7 +548,7 @@ small {
   gap: 14px;
 
   border-bottom:
-    1px solid rgba(255, 255, 255, 0.065);
+    1px solid rgb(82 187 255 / 0.13);
 
   cursor: pointer;
 
@@ -612,7 +612,7 @@ small {
 
   cursor: pointer;
 
-  accent-color: #ffd000;
+  accent-color: var(--rpg-gold);
 }
 
 
@@ -641,7 +641,7 @@ small {
   gap: 7px;
 
   border:
-    1px solid rgba(255, 255, 255, 0.07);
+    1px solid rgb(82 187 255 / 0.14);
 
   border-radius: 16px;
 
@@ -745,4 +745,4 @@ small {
   }
 
 }
-.config-convite{display:flex;gap:12px;align-items:end;margin-top:18px}.config-convite label{display:grid;gap:7px;flex:1}.config-convite input{padding:10px;border:1px solid #405875;border-radius:8px;background:#091522;color:#eef4ff}.config-convite button,.config-botao-perigo{padding:10px 13px;border:1px solid #405875;border-radius:8px;background:#17283b;color:#eef4ff;cursor:pointer}.config-botao-perigo{margin-top:12px;color:#ffaaaa;border-color:#744}@media(max-width:650px){.config-convite{align-items:stretch;flex-direction:column}}
+.config-convite{display:flex;gap:12px;align-items:end;margin-top:18px}.config-convite label{display:grid;gap:7px;flex:1}.config-convite input{padding:10px;border:1px solid var(--rpg-line-bright);border-radius:8px;background:var(--rpg-inset);color:#eef4ff}.config-convite button,.config-botao-perigo{padding:10px 13px;border:1px solid var(--rpg-line-bright);border-radius:8px;background:var(--rpg-raised);color:#eef4ff;cursor:pointer}.config-botao-perigo{margin-top:12px;color:#ffaaaa;border-color:#744}@media(max-width:650px){.config-convite{align-items:stretch;flex-direction:column}}

@@ -14,7 +14,7 @@ body {
     sans-serif;
 
   background:
-    #10131a;
+    var(--rpg-bg);
 
   color:
     #ffffff;
@@ -36,7 +36,7 @@ textarea {
   min-height: 100vh;
 
   background:
-    #10131a;
+    var(--rpg-bg);
 }
 
 
@@ -54,10 +54,10 @@ textarea {
   padding: 20px;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   border-bottom:
-    1px solid #292f3b;
+    1px solid var(--rpg-raised);
 }
 
 .header h1 {
@@ -88,7 +88,7 @@ textarea {
   justify-content: center;
 
   background:
-    #252b36;
+    var(--rpg-raised);
 
   border-radius:
     12px;
@@ -107,7 +107,7 @@ textarea {
     10px;
 
   background:
-    #252b36;
+    var(--rpg-raised);
 
   color:
     white;
@@ -186,10 +186,10 @@ textarea {
     20px;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   border:
-    1px solid #292f3b;
+    1px solid var(--rpg-raised);
 
   border-radius:
     15px;
@@ -272,7 +272,7 @@ textarea {
     8px;
 
   background:
-    #252b36;
+    var(--rpg-raised);
 
   color:
     white;
@@ -286,7 +286,7 @@ textarea {
 
 .open-button:hover {
   background:
-    #343c4b;
+    var(--rpg-line);
 }
 
 .open-button:active {
@@ -355,10 +355,10 @@ textarea {
     15px;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   border:
-    1px solid #292f3b;
+    1px solid var(--rpg-raised);
 
   border-radius:
     15px;
@@ -380,7 +380,7 @@ textarea {
     center;
 
   background:
-    #252b36;
+    var(--rpg-raised);
 
   border-radius:
     12px;
@@ -447,7 +447,7 @@ textarea {
     6px 9px;
 
   background:
-    #202631;
+    var(--rpg-raised);
 
   border-radius:
     7px;
@@ -475,10 +475,10 @@ textarea {
     20px;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   border:
-    1px solid #292f3b;
+    1px solid var(--rpg-raised);
 
   border-radius:
     15px;
@@ -528,10 +528,10 @@ textarea {
     18px;
 
   background:
-    #202631;
+    var(--rpg-raised);
 
   border:
-    1px solid #303846;
+    1px solid var(--rpg-line);
 
   border-radius:
     12px;
@@ -625,13 +625,13 @@ textarea {
     38px;
 
   border:
-    1px solid #3a4352;
+    1px solid var(--rpg-line-bright);
 
   border-radius:
     8px;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   color:
     white;
@@ -648,7 +648,7 @@ textarea {
 
 .buttons button:hover {
   background:
-    #343c4b;
+    var(--rpg-line);
 }
 
 .buttons button:active {
@@ -675,10 +675,10 @@ textarea {
     12px;
 
   background:
-    #202631;
+    var(--rpg-raised);
 
   border:
-    1px solid #303846;
+    1px solid var(--rpg-line);
 
   border-radius:
     10px;
@@ -713,7 +713,7 @@ textarea {
     7px;
 
   border:
-    1px solid #3a4352;
+    1px solid var(--rpg-line-bright);
 
   border-radius:
     7px;
@@ -722,7 +722,7 @@ textarea {
     none;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   color:
     white;
@@ -759,13 +759,13 @@ textarea {
     34px;
 
   border:
-    1px solid #3a4352;
+    1px solid var(--rpg-line-bright);
 
   border-radius:
     7px;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   color:
     white;
@@ -782,7 +782,7 @@ textarea {
 
 .attribute-actions button:hover {
   background:
-    #343c4b;
+    var(--rpg-line);
 }
 
 .attribute-actions button:active {
@@ -819,10 +819,10 @@ textarea {
     15px;
 
   background:
-    #202631;
+    var(--rpg-raised);
 
   border:
-    1px solid #303846;
+    1px solid var(--rpg-line);
 
   border-radius:
     10px;
@@ -891,7 +891,7 @@ textarea {
     11px 12px;
 
   border:
-    1px solid #303846;
+    1px solid var(--rpg-line);
 
   border-radius:
     8px;
@@ -900,7 +900,7 @@ textarea {
     none;
 
   background:
-    #202631;
+    var(--rpg-raised);
 
   color:
     white;
@@ -934,13 +934,13 @@ textarea {
     10px;
 
   border:
-    1px solid #303846;
+    1px solid var(--rpg-line);
 
   border-radius:
     8px;
 
   background:
-    #202631;
+    var(--rpg-raised);
 
   color:
     #b8c0ce;
@@ -954,7 +954,7 @@ textarea {
 
 .edit-tabs button:hover {
   background:
-    #343c4b;
+    var(--rpg-line);
 }
 
 
@@ -970,10 +970,10 @@ textarea {
     18px;
 
   background:
-    #202631;
+    var(--rpg-raised);
 
   border:
-    1px solid #303846;
+    1px solid var(--rpg-line);
 
   border-radius:
     12px;
@@ -1050,7 +1050,7 @@ textarea {
     9px;
 
   background:
-    #252b36;
+    var(--rpg-raised);
 
   color:
     white;
@@ -1073,7 +1073,7 @@ textarea {
 
 .avatar-upload:hover {
   background:
-    #343c4b;
+    var(--rpg-line);
 }
 
 .avatar-upload:active {
@@ -1150,13 +1150,13 @@ textarea {
     13px;
 
   border:
-    1px solid #303846;
+    1px solid var(--rpg-line);
 
   border-radius:
     10px;
 
   background:
-    #171b24;
+    var(--rpg-surface);
 
   color:
     white;
@@ -1167,7 +1167,7 @@ textarea {
 
 .back-home:hover {
   background:
-    #252b36;
+    var(--rpg-raised);
 }
 
 
